@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz: Capivaras e o Rio Capibaribe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6ffe6;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    h1 {
+      color: #2e7d32;
+    }
+    .question {
+      font-size: 18px;
+      margin: 20px 0 10px;
+    }
+    .answers button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #a5d6a7;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 90%;
+    }
+    .answers button:hover {
+      background-color: #81c784;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="capi.png" alt="Capa do Quiz">
+    <h1>Quiz: Capivaras e o Rio Capibaribe 🌿</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "🐾 Onde vivem as capivaras?",
+        options: [
+          "No deserto",
+          "Na floresta amazônica",
+          "Às margens de rios e lagos",
+          "No oceano"
+        ],
+        answer: 2
+      },
+      {
+        question: "🌊 Qual a importância do Rio Capibaribe?",
+        options: [
+          "Apenas lazer",
+          "Fornece água e sustenta o ecossistema",
+          "Serve para jogar lixo",
+          "Não tem importância"
+        ],
+        answer: 1
+      },
+      {
+        question: "🦫 O que devemos fazer ao encontrar capivaras na cidade?",
+        options: [
+          "Perseguir para tirar foto",
+          "Alimentar com comida humana",
+          "Observar de longe e respeitar seu espaço",
+          "Levar pra casa"
+        ],
+        answer: 2
+      },
+      {
+        question: "♻️ Como podemos ajudar a preservar o Capibaribe?",
+        options: [
+          "Jogando lixo no rio",
+          "Não desperdiçando água e evitando poluir",
+          "Cortando árvores próximas",
+          "Jogando óleo de cozinha na pia"
+        ],
+        answer: 1
+      },
+      {
+        question: "🌱 As capivaras são importantes porque:",
+        options: [
+          "São perigosas para humanos",
+          "Ajudam no equilíbrio ecológico",
+          "Destroem plantações",
+          "São boas nadadoras apenas"
+        ],
+        answer: 1
+      },
+      {
+        question: "🛶 O rio Capibaribe passa por qual capital?",
+        options: [
+          "Salvador",
+          "Fortaleza",
+          "Recife",
+          "Natal"
+        ],
+        answer: 2
+      },
+      {
+        question: "🚯 Qual dessas atitudes prejudica o rio Capibaribe?",
+        options: [
+          "Plantar árvores nas margens",
+          "Jogar lixo e esgoto diretamente",
+          "Fazer passeios de barco",
+          "Promover educação ambiental"
+        ],
+        answer: 1
+      },
+      {
+        question: "💧 Por que é importante preservar os rios urbanos como o Capibaribe?",
+        options: [
+          "Para evitar que eles fiquem limpos demais",
+          "Porque são usados só para turismo",
+          "Porque ajudam a biodiversidade e qualidade de vida",
+          "Porque não têm nenhum uso real"
+        ],
+        answer: 2
+      },
+      {
+        question: "🐾 As capivaras são:",
+        options: [
+          "Roedores gigantes e herbívoros",
+          "Felinos carnívoros",
+          "Répteis lentos",
+          "Peixes de água doce"
+        ],
+        answer: 0
+      },
+      {
+        question: "🎓 O que você pode fazer para ajudar na preservação?",
+        options: [
+          "Jogar papel no chão",
+          "Ignorar quando vê poluição",
+          "Compartilhar conhecimento e agir corretamente",
+          "Alimentar animais silvestres com restos de comida"
+        ],
+        answer: 2
+      }
+    ];
+
+    const quiz = document.getElementById('quiz');
+    const result = document.getElementById('result');
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion() {
+      if (currentQuestion < quizData.length) {
+        const q = quizData[currentQuestion];
+        quiz.innerHTML = `
+          <div class="question">${q.question}</div>
+          <div class="answers">
+            ${q.options.map((opt, i) => `<button onclick="checkAnswer(${i})">${opt}</button>`).join('')}
+          </div>
+        `;
+      } else {
+        quiz.innerHTML = '';
+        result.innerHTML = `✅ Você acertou <strong>${score}</strong> de <strong>${quizData.length}</strong> perguntas!<br><br>🌱 Obrigado por ajudar a preservar as capivaras e o rio Capibaribe!`;
+      }
+    }
+
+    function checkAnswer(selected) {
+      if (selected === quizData[currentQuestion].answer) {
+        score++;
+      }
+      currentQuestion++;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
